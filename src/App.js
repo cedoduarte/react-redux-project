@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { Header } from "./components/Header/Header";
+import { Email } from "./components/Email/Email";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "./redux/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addUser({
+      name: "Carlos",
+      username: "cedo",
+      email: "carlosduarte.1@hotmail.com"
+    }));
+  }, []);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <Header />
+        <Email />
+      </div>
+    </>
   );
 }
 
